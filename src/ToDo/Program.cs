@@ -15,8 +15,7 @@ builder.Services.AddOpenApiDocument(config =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
+
     app.UseOpenApi();
     app.UseSwaggerUi(config =>
     {
@@ -25,7 +24,6 @@ if (app.Environment.IsDevelopment())
         config.DocumentPath = "/swagger/{documentName}/swagger.json";
         config.DocExpansion = "list";
     });
-}
 
 // <snippet_group>
 RouteGroupBuilder todoItems = app.MapGroup("/todoitems");
