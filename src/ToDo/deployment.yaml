@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    azure.workload.identity/client-id: "f9c16afc-5962-4878-a3c1-185416b9ea9f"
+  name: "todoa-app-sa"
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -12,7 +19,9 @@ spec:
     metadata:
       labels:
         app: todo-app
+        azure.workload.identity/use: "true"
     spec:
+      serviceAccountName: todoa-app-sa
       nodeSelector:
         kubernetes.io/os: linux
       containers:
