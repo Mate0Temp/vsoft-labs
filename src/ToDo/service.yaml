@@ -4,7 +4,7 @@ metadata:
   name: todo-app-service
   namespace: default
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - targetPort: 8080
       name: port8080
