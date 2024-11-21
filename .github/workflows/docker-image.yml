@@ -15,3 +15,6 @@ jobs:
     - name: Build the Docker image
       working-directory: src/ToDo
       run: docker build . --file Dockerfile --tag todo-app:$(date +%s) --tag todo-app:latest --tag todo-app:${{ env.COMMIT_SHORT_SHA }}
+
+    - name: Check
+      run: docker image ls
