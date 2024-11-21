@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApi", "TodoApi.csproj", "{503F0ADB-3F41-426C-96CE-6CEDD3BB7943}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoEventsProcessor", "..\TodoEventsProcessor\TodoEventsProcessor.csproj", "{D05A0D82-A45D-4691-8F9B-6EBE93AC556F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{503F0ADB-3F41-426C-96CE-6CEDD3BB7943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{503F0ADB-3F41-426C-96CE-6CEDD3BB7943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{503F0ADB-3F41-426C-96CE-6CEDD3BB7943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D05A0D82-A45D-4691-8F9B-6EBE93AC556F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D05A0D82-A45D-4691-8F9B-6EBE93AC556F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D05A0D82-A45D-4691-8F9B-6EBE93AC556F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D05A0D82-A45D-4691-8F9B-6EBE93AC556F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
