@@ -1,10 +1,6 @@
 name: Docker Image CI
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: workflow_dispatch
 
 jobs:
   build:
@@ -17,4 +13,4 @@ jobs:
         calculatedSha=$(git rev-parse --short ${{ github.sha }})
         echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag todo-app:$(date +%s) --tag todo-app:latest --tag todo-app:${{ env.COMMIT_SHORT_SHA }}
+      run: docker build . --file ./src/ToDo/Dockerfile --tag todo-app:$(date +%s) --tag todo-app:latest --tag todo-app:${{ env.COMMIT_SHORT_SHA }}
