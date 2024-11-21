@@ -15,7 +15,7 @@ spec:
       serviceAccountName: todoa-app-sa
       containers:
       - name: todo-events-processor
-        image: farfocel.azurecr.io/todo-events-processor:latest
+        image: farfocel.azurecr.io/todo/todo-events-processor:latest
         resources:
             requests:
               cpu: '0'
