@@ -38,6 +38,7 @@ var secretClient = new SecretClient(keyVaultUri, new DefaultAzureCredential());
 var serviceBusConnection = secretClient.GetSecret("ServiceBusConnection").Value.Value;
 
 builder.Services.AddSingleton(new ServiceBusClient(serviceBusConnection));
+builder.Services.AddSingleton<ServiceBusService>();
 
 var app = builder.Build();
 
