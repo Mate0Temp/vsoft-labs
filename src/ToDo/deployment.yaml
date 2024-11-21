@@ -26,7 +26,7 @@ spec:
         kubernetes.io/os: linux
       containers:
         - name: todo-app
-          image: farfocel.azurecr.io/todo-app:latest
+          image: farfocel.azurecr.io/todo/todo-app:latest
           env:
           - name: ConnectionStrings__DefaultConnection
             value: 'Server=vsoft00.database.windows.net;Authentication=Active Directory Default;Database=vsoftsql;MultipleActiveResultSets=True'
