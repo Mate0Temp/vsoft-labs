@@ -16,6 +16,7 @@ jobs:
         service_principal_password: ${{ secrets.AZURE_CLIENT_SECRET }}
         tenant: ${{ secrets.AZURE_TENANT_ID }}
         registry: ${{ secrets.ACR_LOGIN_SERVER }}
+        repository: ToDo
         image:  todo-app
         folder: src/ToDo
         branch: master
