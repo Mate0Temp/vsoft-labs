@@ -64,6 +64,7 @@ jobs:
       with:
         namespace: 'default'
         manifests: |
+           src/ToDo/serviceAccount.yaml
            src/ToDo/deployment.yaml
            src/ToDo/service.yaml
            src/ToDo/ingress.yaml
