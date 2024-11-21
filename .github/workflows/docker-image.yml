@@ -70,6 +70,6 @@ jobs:
            src/ToDo/rbac.yaml
            src/TodoEventsProcessor/deployment.yaml
         images: |
-          '${{ secrets.registry }}.azurecr.io/todo/todo-app:${{ github.sha }}'
-          '${{ secrets.registry }}.azurecr.io/todo/todo-events-processor:${{ github.sha }}'
+          ${{ secrets.registry }}.azurecr.io/todo/todo-app:${{ github.sha }}
+          ${{ secrets.registry }}.azurecr.io/todo/todo-events-processor:${{ github.sha }}
         pull-images: false 
