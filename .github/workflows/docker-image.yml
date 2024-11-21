@@ -47,8 +47,8 @@ jobs:
       with:
         namespace: 'default'
         manifests: |
-           deployment.yaml
-           service.yaml
-           ingress.yaml
+           src/ToDo/deployment.yaml
+           src/ToDo/service.yaml
+           src/ToDo/ingress.yaml
         images: '${{ secrets.registry }}.azurecr.io/todo-app:${{ github.sha }}'
         pull-images: false 
