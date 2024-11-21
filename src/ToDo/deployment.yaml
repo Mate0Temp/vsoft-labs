@@ -11,7 +11,6 @@ metadata:
   name: todo-app
   namespace: default
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: todo-app
@@ -28,16 +27,33 @@ spec:
         - name: todo-app
           image: farfocel.azurecr.io/todo/todo-app:latest
           env:
-          - name: ConnectionStrings__DefaultConnection
-            value: 'Server=vsoft00.database.windows.net;Authentication=Active Directory Default;Database=vsoftsql;MultipleActiveResultSets=True'
-          - name: APPLICATIONINSIGHTS_CONNECTION_STRING
-            value: "InstrumentationKey=f44857d5-7093-4241-a427-d8c6ffe00695;IngestionEndpoint=https://polandcentral-0.in.applicationinsights.azure.com/;LiveEndpoint=https://polandcentral.livediagnostics.monitor.azure.com/;ApplicationId=cac3e55e-0466-4187-9405-e2859750dcb5"
+            - name: ConnectionStrings__DefaultConnection
+              value: "Server=vsoft00.database.windows.net;Authentication=Active Directory Default;Database=vsoftsql;MultipleActiveResultSets=True"
+            - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+              value: "InstrumentationKey=f44857d5-7093-4241-a427-d8c6ffe00695;IngestionEndpoint=https://polandcentral-0.in.applicationinsights.azure.com/;LiveEndpoint=https://polandcentral.livediagnostics.monitor.azure.com/;ApplicationId=cac3e55e-0466-4187-9405-e2859750dcb5"
           ports:
             - containerPort: 8080
           resources:
             requests:
-              cpu: '0'
-              memory: '0'
+              cpu: "100m"
+              memory: "128Mi"
             limits:
-              cpu: '256'
-              memory: 11400G
+              cpu: "200m"
+              memory: "256Mi"
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: todo-api-scaler
+spec:
+  scaleTargetRef:
+    name: todo-app
+  minReplicaCount: 1  # API zawsze musi mieć minimum jedną instancję
+  maxReplicaCount: 10
+  pollingInterval: 15
+  cooldownPeriod: 60
+  triggers:
+  - type: cpu
+    metadata:
+      type: Utilization
+      value: "60"  # Skaluj gdy średnie użycie CPU przekracza 60%
