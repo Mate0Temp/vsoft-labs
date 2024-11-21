@@ -24,6 +24,20 @@ jobs:
         branch: main
         tag: ${{ github.sha }}
 
+    - name: ACR build Event processor
+      id: build-push-acr-events-processor
+      uses: azure/acr-build@v1
+      with:
+        service_principal: ${{ secrets.AZURE_CLIENT_ID }}
+        service_principal_password: ${{ secrets.AZURE_CLIENT_SECRET }}
+        tenant: ${{ secrets.AZURE_TENANT_ID }}
+        registry: ${{ secrets.ACR_LOGIN_SERVER }}
+        repository: todo
+        image:  todo-events-processor
+        folder: src/TodoEventsProcessor
+        branch: main
+        tag: ${{ github.sha }}
+
     - name: Check
       run: docker image ls
       
@@ -53,5 +67,8 @@ jobs:
            src/ToDo/service.yaml
            src/ToDo/ingress.yaml
            src/ToDo/rbac.yaml
-        images: '${{ secrets.registry }}.azurecr.io/todo/todo-app:${{ github.sha }}'
+           src/TodoEventsProcessor/deployment.yaml
+        images: |
+          '${{ secrets.registry }}.azurecr.io/todo/todo-app:${{ github.sha }}'
+          '${{ secrets.registry }}.azurecr.io/todo/todo-events-processor:${{ github.sha }}'
         pull-images: false 
