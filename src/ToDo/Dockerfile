@@ -1,15 +1,11 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /App
-
-# Copy everything
-COPY . ./
-# Restore as distinct layers
+COPY ["TodoEventsProcessor.csproj", "."]
 RUN dotnet restore
-# Build and publish a release
-RUN dotnet publish -c Release -o out
+COPY . .
+RUN dotnet publish -c Release -o /app
 
-# Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
-WORKDIR /App
-COPY --from=build-env /App/out .
-ENTRYPOINT ["dotnet", "TodoApi.dll"]
+WORKDIR /app
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "TodoEventsProcessor.dll"]
